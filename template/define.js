@@ -23,4 +23,4 @@ var _routes = recursiveRoutes(router.routes, '', _components)
 uniqBy(_components, '_name').forEach(function (route) { %>
 const <%= route._name %> = function () { return import('<%= route.component %>' /* webpackChunkName: "modules/<%= route.name %>" */) }
 <% }) %>
-_.set(Vue, 'udock.plugins.auto-router.routes', [<%= _routes %>])
+_.set(framework, 'udock.plugins.auto-router.routes', [<%= _routes %>])

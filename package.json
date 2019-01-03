@@ -1,7 +1,6 @@
 {
   "name": "@udock/vue-plugin-auto-router",
   "description": "@udock/vue-plugin-auto-router",
-  "private": true,
   "version": "0.0.1",
   "files": [
     "lib",
@@ -12,5 +11,6 @@
     "pify": "^2.3.0",
     "hash-sum": "^1.0.2",
     "serialize-javascript": "^1.3.0"
-  }
+  },
+  "license": "MIT"
 }
