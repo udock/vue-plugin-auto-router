@@ -1,7 +1,7 @@
 {
   "name": "@udock/vue-plugin-auto-router",
   "description": "@udock/vue-plugin-auto-router",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "files": [
     "lib",
     "template"
