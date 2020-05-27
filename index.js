@@ -1,1 +1,2 @@
-module.exports = require('./lib/install')
+"use strict";
+module.exports = require('./lib/install');
