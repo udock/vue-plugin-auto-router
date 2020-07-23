@@ -12,6 +12,7 @@ export = function udockBootstrapLoader(this: webpack.loader.LoaderContext, conte
     delete require.cache[configPath]
     this.addDependency(configPath)
     let autoRouterConfig = {
+      debug: false,
       ignore: 'ar.ignore',
       path: 'src', // 生成路由扫描的根目录
       'chunk-name': [
@@ -29,9 +30,11 @@ export = function udockBootstrapLoader(this: webpack.loader.LoaderContext, conte
     }
 
     return generate(this, autoRouterConfig).then((result: any) => {
-      console.log('======== auto-router =========')
-      console.log(result.define)
-      console.log('======== =========== =========')
+      if (autoRouterConfig.debug) {
+        console.log('======== auto-router =========')
+        console.log(result.define)
+        console.log('======== =========== =========')
+      }
       return result.define
     })
   }
