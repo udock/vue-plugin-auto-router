@@ -6,7 +6,7 @@ function recursiveRoutes (routes, tab, components) {
     route._name = '_' + hash(route.component)
     components.push({ _name: route._name, component: route.component, name: route.name })
     res += tab
-    if (route.hasExOptions) {res += `Object.assgin(require('!${loader}!${route.component}').default, `}
+    if (route.hasExOptions) {res += `Object.assign(require('!${loader}!${route.component}').default, `}
     res += '{\n'
     res += tab + '  path: ' + JSON.stringify(route.path) + ',\n'
     res += tab + '  component: ' + route._name
