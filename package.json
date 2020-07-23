@@ -1,6 +1,6 @@
 {
   "name": "@udock/vue-plugin-auto-router",
-  "version": "2.0.3",
+  "version": "3.0.0",
   "description": "@udock/vue-plugin-auto-router",
   "main": "index.js",
   "directories": {
@@ -19,15 +19,15 @@
     "serialize-javascript": "^4.0.0"
   },
   "devDependencies": {
+    "vue-router": "^4.0.0-alpha.6",
     "@types/hash-sum": "^1.0.0",
     "@types/lodash": "^4.14.158",
     "@types/node": "^14.0.24",
     "@types/pify": "^3.0.2",
     "@types/serialize-javascript": "^4.0.0",
-    "@types/vue-router": "^2.0.0",
     "@types/webpack": "^4.41.21"
   },
   "peerDependencies": {
-    "vue-router": "^3.2.0"
+    "vue-router": "^4.0.0-alpha.6"
   }
 }
