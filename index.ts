@@ -1,1 +1,1 @@
-export = require('./lib/install')
+export default []

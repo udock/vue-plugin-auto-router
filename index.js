@@ -1,2 +1,3 @@
 "use strict";
-module.exports = require('./lib/install');
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = [];

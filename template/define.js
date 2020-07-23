@@ -6,14 +6,14 @@ function recursiveRoutes (routes, tab, components) {
     route._name = '_' + hash(route.component)
     components.push({ _name: route._name, component: route.component, name: route.name })
     res += tab
-    if (route.hasExOptions) {res += '_.defaults('}
+    if (route.hasExOptions) {res += `Object.assgin(require('!${loader}!${route.component}').default, `}
     res += '{\n'
     res += tab + '  path: ' + JSON.stringify(route.path) + ',\n'
     res += tab + '  component: ' + route._name
     // res += (route.name) ? ',\n  ' + tab + 'name: ' + JSON.stringify(route.name) : ''
     res += (route.children) ? ',\n  ' + tab + 'children: [\n' + recursiveRoutes(routes[i].children, tab + '    ', components) + '\n ' + tab + '   ]' : ''
     res += '\n' + tab + '}'
-    if (route.hasExOptions) {res += `, require('!${loader}!${route.component}').default)`}
+    if (route.hasExOptions) {res += ')'}
     res += (i + 1 === routes.length ? '' : ',\n')
   })
   res = res.replace(/"/g, '\'')
@@ -23,4 +23,4 @@ var _routes = recursiveRoutes(router.routes, '', _components)
 uniqBy(_components, '_name').forEach(function (route) { %>
 const <%= route._name %> = function () { return import('<%= route.component %>' /* webpackChunkName: "modules/<%= route.name %>" */) }
 <% }) %>
-_.set(framework, 'udock.plugins.auto-router.routes', [<%= _routes %>])
+export default [<%= _routes %>]
