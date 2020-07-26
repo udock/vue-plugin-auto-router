@@ -80,7 +80,7 @@ async function walk (parent: string, options: WalkOptions, result?: WalkResult, 
     }
   } else {
     if (REGEX_MODULE_INDEX.test(file)) {
-      file = fixPath(file.replace(/\/index.vue$/i, '.vue'))
+      file = fixPath(file.replace(/\/index\.vue$/i, '.vue'))
     } else if (REGEX_VALIDATE_PAGE.test(file)) {
       file = fixPath(file)
     } else {
@@ -185,22 +185,33 @@ function createRoutes (files: { [key: string]: string }, options: RouteOptions) 
     })
     // Order Routes path
     parent.push(route)
-    parent.sort(function (a, b) {
-      if (!a.path.length || a.path === '/') { return -1 }
-      if (!b.path.length || b.path === '/') { return 1 }
-      let res = 0
-      const _a = a.path.split('/')
-      const _b = b.path.split('/')
-      for (let i = 0; i < _a.length; i++) {
-        if (res !== 0) { break }
-        const y = (_a[i].indexOf('*') > -1) ? 2 : (_a[i].indexOf(':') > -1 ? 1 : 0)
-        const z = (_b[i].indexOf('*') > -1) ? 2 : (_b[i].indexOf(':') > -1 ? 1 : 0)
-        res = y - z
-        if (i === _b.length - 1 && res === 0) {
-          res = 1
-        }
+    parent.sort(function (ra, rb) {
+      let a = ra.path
+      let b = rb.path
+
+      if (!a.length || a === '/') { return 1 }
+      if (!b.length || b === '/') { return -1 }
+
+      a = a.toLowerCase()
+      b = b.toLowerCase()
+
+      let pa = 0
+      let pb = 0
+
+      if (~a.indexOf('*')) pa += 100000 + a.indexOf('*')
+      if (~a.indexOf(':')) pa += 10000 - a.indexOf(':')
+      if (~b.indexOf('*')) pb += 100000 + b.indexOf('*')
+      if (~b.indexOf(':')) pb += 10000 - b.indexOf(':')
+
+      if (pa > pb) {
+        return 1
+      } else if (pa < pb) {
+        return -1
+      } else {
+        if (~a.indexOf(b)) { return 1 }
+        if (~b.indexOf(a)) { return -1 }
+        return a > b ? 1 : -1
       }
-      return res === 0 ? -1 : res
     })
   })
   return cleanChildrenRoutes(routes)

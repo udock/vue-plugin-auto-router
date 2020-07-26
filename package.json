@@ -1,6 +1,6 @@
 {
   "name": "@udock/vue-plugin-auto-router",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "@udock/vue-plugin-auto-router",
   "main": "index.js",
   "directories": {
