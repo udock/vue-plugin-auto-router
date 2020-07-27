@@ -32,10 +32,10 @@ export = function udockBootstrapLoader(this: webpack.loader.LoaderContext, conte
     return generate(this, autoRouterConfig).then((result: any) => {
       if (autoRouterConfig.debug) {
         console.log('======== auto-router =========')
-        console.log(result.define)
+        console.log(result.code)
         console.log('======== =========== =========')
       }
-      return result.define
+      return result.code
     })
   }
 }
