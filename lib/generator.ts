@@ -324,12 +324,12 @@ let generateAutoRouters = function (options: {
       hash,
       serialize
     }
-    const templateFilePath = path.resolve(__dirname, '..', 'template', 'define.js')
+    const templateFilePath = path.resolve(__dirname, '..', 'template', 'index.js')
     readFile(templateFilePath, 'utf8')
       .then(function (fileContent) {
         const template = _.template(fileContent, { imports })
         resolve({
-          define: optimizeAsyncImport(
+          code: optimizeAsyncImport(
             template(Object.assign({}, data)),
             {
               contextPath: options.contextPath,
